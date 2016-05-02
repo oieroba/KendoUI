@@ -1,0 +1,35 @@
+<script type="x/ignore" id="the-html">
+<div ng-controller="MyCtrl">
+  <div style="position: relative; width: 400px; height: 100px">
+    <button class="k-button" ng-show="!win1visible" ng-click="win1.open()">Open calendar</button>
+    <button class="k-button" ng-show="!win2visible" ng-click="win2.open()">Open Lorem Ipsum</button>
+
+    <div kendo-window="win1" k-title="'Calendar'"
+         k-on-open="win1visible = true" k-on-close="win1visible = false">
+      <div kendo-calendar></div>
+    </div>
+
+    <div kendo-window="win2" k-title="'AJAX content'"
+         k-width="600" k-height="200" k-visible="false"
+         k-content="{ url: 'doc/web/loremIpsum.html' }"
+         k-on-open="win2visible = true" k-on-close="win2visible = false"></div>
+  </div>
+</div>
+</script>
+
+<script id="the-javascript">
+function MyCtrl($scope) {
+  $scope.hello = "Hello from Controller!";
+}
+</script>
+
+<p class="important">
+  In order for AJAX-loaded content to be properly compiled through Angular,
+  the template should define a single root element.  Just embed everything
+  inside a single <code>&lt;div&gt;</code> tag.  The “Lorem ipsum” window
+  contains an angular expression — <code ng-non-bindable>{{hello}}</code> —
+  which is evaluated in the scope defined in controller.  Also, the URL of
+  the template must target the same domain as the containing page.
+</p>
+
+<div ng-include src="SHOW_SOURCE"></div>
